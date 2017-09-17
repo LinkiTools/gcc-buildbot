@@ -1,4 +1,7 @@
+./_sources/design.md.txt
+./_sources/features.md.txt
 ./_sources/index.md.txt
+./_sources/master.md.txt
 ./_sources/worker.md.txt
 ./_static/ajax-loader.gif
 ./_static/basic.css
@@ -34,8 +37,11 @@
 ./_static/up-pressed.png
 ./_static/up.png
 ./_static/websupport.js
+./design.html
+./features.html
 ./genindex.html
 ./index.html
+./master.html
 ./objects.inv
 ./search.html
 ./searchindex.js
