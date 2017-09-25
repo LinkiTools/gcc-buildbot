@@ -13,6 +13,7 @@ buildbot-www==0.9.11
 certifi==2017.7.27.1
 cffi==1.10.0
 chardet==3.0.4
+cmdln==2.0.0
 CommonMark==0.5.4
 constantly==15.1.0
 cryptography==2.0.3
