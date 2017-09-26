@@ -95,7 +95,9 @@
 <li class="toctree-l1"><a class="reference internal" href="features.html">Features</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Adding a worker</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#dependencies">Dependencies</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#compile-farm-setup">Compile Farm Setup</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#setup">Setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#registration-of-worker-in-master">Registration of worker in master</a></li>
 </ul>
 </li>
 </ul>
@@ -171,6 +173,62 @@
 <li>Python virtualenv;</li>
 </ul>
 </div>
+<div class="section" id="compile-farm-setup">
+<span id="compile-farm-setup"></span><h2>Compile Farm Setup<a class="headerlink" href="#compile-farm-setup" title="Permalink to this headline">¶</a></h2>
+<p>The setup in a compile farm machine, due to lack of privileges (and
+some times lack of python3) might look slightly different than a setup
+on your own machine.</p>
+<p>In the compile farm we use <code class="docutils literal"><span class="pre">pyenv</span></code> to install a Python3 release
+(namely <code class="docutils literal"><span class="pre">3.6.2</span></code>) and take it from there.</p>
+<p>From your compile farm home directory:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>~$ curl -L https://raw.githubusercontent.com/pyenv/pyenv-installer/master/bin/pyenv-installer <span class="p">|</span> bash
+</pre></div>
+</div>
+<p>Go ahead and follow the instructions by adding this (accurate at time
+of writing) to your <code class="docutils literal"><span class="pre">.bash_profile</span></code>:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span><span class="nb">export</span> <span class="nv">PATH</span><span class="o">=</span><span class="s2">&quot;/home/pmatos/.pyenv/bin:</span><span class="nv">$PATH</span><span class="s2">&quot;</span>
+<span class="nb">eval</span> <span class="s2">&quot;</span><span class="k">$(</span>pyenv init -<span class="k">)</span><span class="s2">&quot;</span>
+<span class="nb">eval</span> <span class="s2">&quot;</span><span class="k">$(</span>pyenv virtualenv-init -<span class="k">)</span><span class="s2">&quot;</span>
+</pre></div>
+</div>
+<p>Then source it and update <code class="docutils literal"><span class="pre">pyenv</span></code>.</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>~$ <span class="nb">source</span> .bash_profile
+~$ pyenv update
+~$ pyenv install <span class="m">3</span>.6.2
+~$ pyenv shell <span class="m">3</span>.6.2
+</pre></div>
+</div>
+<p>From this point onwards we have a Python <code class="docutils literal"><span class="pre">3.6.2</span></code> installation
+working. We can now create a directory for the buildbot worker, create
+a virtual environment to install Python dependencies and edit the
+buildbot information.</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>~$ mkdir gcc-bbworker
+~$ <span class="nb">cd</span> gcc-bbworker
+~/gcc-bbworker$ pyenv virtualenv gcc-bbworker-env
+~/gcc-bbworker$ pyenv activate gcc-bbworker-env
+</pre></div>
+</div>
+<p>Choose a name and password for your buildbot. Lets say you chose the
+name <code class="docutils literal"><span class="pre">cf-test-x86_64</span></code> and password <code class="docutils literal"><span class="pre">LDYtYpTisHIO</span></code>, then you would use
+the following command line to create the worker:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>~/gcc-bbworker$ buildbot-worker create-worker -r . gcc-buildbot.linki.tools cf-test-x86_64 LDYtYpTisHIO
+</pre></div>
+</div>
+<p>Now edit <code class="docutils literal"><span class="pre">info/host</span></code> and <code class="docutils literal"><span class="pre">info/admin</span></code>. For reference for
+<code class="docutils literal"><span class="pre">gcc20.fsffrance.org</span></code>, I used at creation time:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>~/gcc-bbworker$ cat info/admin
+Paulo Matos &lt;pmatos@linki.tools&gt;
+~/gcc-bbworker$ cat info/host
+Compile Farm gcc20, Intel Xeon CPU X5670 <span class="m">2</span>.93Ghz. <span class="m">2</span> CPU, <span class="m">12</span> cores, <span class="m">24</span> threads. RAM <span class="m">24105</span> MB. Debian
+</pre></div>
+</div>
+<p>At this point, you need to contact me as specified below to register
+the worker on master.</p>
+<p>Once I confirm the registration of the worker, go ahead and start it.</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+</div>
 <div class="section" id="setup">
 <span id="setup"></span><h2>Setup<a class="headerlink" href="#setup" title="Permalink to this headline">¶</a></h2>
 <p>We are first going to create a directory, download some python
@@ -202,7 +260,10 @@ FOO FOOPASS
 worker's password. At this point edit <code class="docutils literal"><span class="pre">info/admin</span></code> and <code class="docutils literal"><span class="pre">info/host</span></code>
 with useful information --- this will be shown in the master's user
 interface.</p>
-<p>Once you have done this, <a class="reference external" href="http://gcc-buildbot.linki.tools/docsmailto:pmatos&#64;linki.tools">send me an email</a>
+</div>
+<div class="section" id="registration-of-worker-in-master">
+<span id="registration-of-worker-in-master"></span><h2>Registration of worker in master<a class="headerlink" href="#registration-of-worker-in-master" title="Permalink to this headline">¶</a></h2>
+<p>Once you completed worker creation <a class="reference external" href="http://gcc-buildbot.linki.tools/docsmailto:pmatos&#64;linki.tools">send me an email</a>
 with the subject &quot;New buildbot worker&quot;. In the body of the email
 please give me the buildbot name and password you used to the create
 the buildbot above.</p>
