@@ -47,7 +47,7 @@ buildbot information.
 ~$ cd gcc-bbworker
 ~/gcc-bbworker$ pyenv virtualenv gcc-bbworker-env
 ~/gcc-bbworker$ pyenv activate gcc-bbworker-env
-~/gcc-bbworker$ pip install buildbot-worker==0.9.11
+~/gcc-bbworker$ pip install buildbot-worker==0.9.13
 ```
 
 Choose a name and password for your buildbot. Lets say you chose the
