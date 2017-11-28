@@ -1,0 +1,11 @@
+output-format: pylint
+
+strictness: high
+test-warnings: true
+doc-warning: true
+
+pylint:
+  disable:
+    - invalid-name
+    
+
