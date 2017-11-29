@@ -33,6 +33,7 @@ import plumbum
 
 log.basicConfig(level=log.DEBUG)
 
+
 def find_previous_revision_file(datadir: str,
                                 builder: str,
                                 lang: str,
@@ -107,8 +108,9 @@ def analyze(data_dir: str, builder: str, lang: str, branch: str, commit: int) ->
     # TODO if rc is not zero we should probable do some investigation on why.
     print(stdout)
     log.debug(stderr)
-    log.debug('jv exited with {}'.format(rc))
+    log.debug('jv exited with %s', rc)
     return rc
 
 if __name__ == '__main__':
+    # pylint: disable=no-value-for-parameter,unexpected-keyword-arg
     sys.exit(analyze(standalone_mode=False))
