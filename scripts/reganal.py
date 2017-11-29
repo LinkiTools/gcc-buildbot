@@ -31,6 +31,7 @@ import sys
 import click
 import plumbum
 
+log.basicConfig(level=log.DEBUG)
 
 def find_previous_revision_file(datadir: str,
                                 builder: str,
@@ -51,7 +52,7 @@ def find_previous_revision_file(datadir: str,
         if not m:
             continue
 
-        rev = m.group(1)
+        rev = int(m.group(1))
         if rev < commit:
             if (previous and rev > previous) \
                or not previous:
@@ -84,25 +85,30 @@ def analyze(data_dir: str, builder: str, lang: str, branch: str, commit: int) ->
 
     assert os.path.exists(prevfile), \
         'File does not exist for comparison: {}'.format(prevfile)
-    assert not os.path.exists(curfile), \
+    assert os.path.exists(curfile), \
         'File does not exist for comparison: {}'.format(curfile)
 
     # Unpack files
-    prevtmp = tempfile.NamedTemporaryFile(delete=False)
+    prevtmp = tempfile.NamedTemporaryFile(suffix='.sum', delete=False)
     with lzma.open(prevfile) as f:
-        f.write(prevtmp)
-    curtmp = tempfile.NamedTemporaryFile(delete=False)
+        prevtmp.write(f.read())
+    curtmp = tempfile.NamedTemporaryFile(suffix='.sum', delete=False)
     with lzma.open(curfile) as f:
-        f.write(curtmp)
+        curtmp.write(f.read())
 
     # OK, use jv to compare current commit to previous commit
-    jv = plumbum.local['jv']
-    rc, stdout, stderr = jv.run('compare', prevtmp, curtmp)
+    try:
+        jv = plumbum.local['jv']
+        rc, stdout, stderr = jv.run(('compare', prevtmp.name, curtmp.name), retcode=None)
+    except plumbum.ProcessExecutionError:
+        log.error('Cannot execute jv')
+        return 1
 
     # TODO if rc is not zero we should probable do some investigation on why.
     print(stdout)
     log.debug(stderr)
+    log.debug('jv exited with {}'.format(rc))
     return rc
 
 if __name__ == '__main__':
-    sys.exit(analyze())  # pylint: disable=no-value-for-parameter
+    sys.exit(analyze(standalone_mode=False))
