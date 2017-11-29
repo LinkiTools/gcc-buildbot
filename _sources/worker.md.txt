@@ -24,7 +24,7 @@ From your compile farm home directory:
 Go ahead and follow the instructions by adding this (accurate at time
 of writing) to your `.bash_profile`:
 ```bash
-export PATH="/home/pmatos/.pyenv/bin:$PATH"
+export PATH="$HOME/.pyenv/bin:$PATH"
 eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
 ```
