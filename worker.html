@@ -198,6 +198,12 @@ of writing) to your <code class="docutils literal"><span class="pre">.bash_profi
 ~$ pyenv shell <span class="m">3</span>.6.2
 </pre></div>
 </div>
+<p>Make sure that after installing Python there's no warning about
+missing <code class="docutils literal"><span class="pre">bz2</span></code> dependencies. You need this compiled into Python to
+successfully install <code class="docutils literal"><span class="pre">twisted</span></code> later on (a dependency of
+<code class="docutils literal"><span class="pre">buildbot-worker</span></code>). To fix this, on Fedora 26 (for example) you can do
+<code class="docutils literal"><span class="pre">dnf</span> <span class="pre">install</span> <span class="pre">bzip2-devel</span></code>. Afterwards, uninstall and reinstall Python
+<code class="docutils literal"><span class="pre">3.6.2</span></code>.</p>
 <p>From this point onwards we have a Python <code class="docutils literal"><span class="pre">3.6.2</span></code> installation
 working. We can now create a directory for the buildbot worker, create
 a virtual environment to install Python dependencies and edit the

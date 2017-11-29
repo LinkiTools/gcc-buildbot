@@ -37,6 +37,13 @@ Then source it and update `pyenv`.
 ~$ pyenv shell 3.6.2
 ```
 
+Make sure that after installing Python there's no warning about
+missing `bz2` dependencies. You need this compiled into Python to
+successfully install `twisted` later on (a dependency of
+`buildbot-worker`). To fix this, on Fedora 26 (for example) you can do
+`dnf install bzip2-devel`. Afterwards, uninstall and reinstall Python
+`3.6.2`.
+
 From this point onwards we have a Python `3.6.2` installation
 working. We can now create a directory for the buildbot worker, create
 a virtual environment to install Python dependencies and edit the
