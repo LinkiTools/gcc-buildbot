@@ -23,4 +23,4 @@ jobs:
 script:
   - ./travis-checkconfig.py
   - buildbot checkconfig
-  - prospector scripts/reganal.py
+  - prospector scripts/regression-analysis.py
