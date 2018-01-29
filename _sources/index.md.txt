@@ -6,4 +6,4 @@
 * [Master deployment](master.md)
 * [Features](features.md)
 * [Adding a worker](worker.md)
-
+* [Regression Testing](regressions.md)

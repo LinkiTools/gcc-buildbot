@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>GCC Buildbot&#39;s documentation &mdash; GCC Buildbot 0.1 documentation</title>
+  <title>Regression Testing &mdash; GCC Buildbot 0.1 documentation</title>
   
 
   
@@ -35,8 +35,8 @@
         <link rel="index" title="Index"
               href="genindex.html"/>
         <link rel="search" title="Search" href="search.html"/>
-    <link rel="top" title="GCC Buildbot 0.1 documentation" href="#"/>
-        <link rel="next" title="Master Design" href="design.html"/> 
+    <link rel="top" title="GCC Buildbot 0.1 documentation" href="index.html"/>
+        <link rel="prev" title="Adding a worker" href="worker.html"/> 
 
   
   <script src="_static/js/modernizr.min.js"></script>
@@ -55,7 +55,7 @@
           
 
           
-            <a href="#" class="icon icon-home"> GCC Buildbot
+            <a href="index.html" class="icon icon-home"> GCC Buildbot
           
 
           
@@ -89,12 +89,16 @@
               
             
             
-              <ul>
+              <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="design.html">Design</a></li>
 <li class="toctree-l1"><a class="reference internal" href="master.html">Master deployment</a></li>
 <li class="toctree-l1"><a class="reference internal" href="features.html">Features</a></li>
 <li class="toctree-l1"><a class="reference internal" href="worker.html">Adding a worker</a></li>
-<li class="toctree-l1"><a class="reference internal" href="regressions.html">Regression Testing</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Regression Testing</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#buildbot-regression">Buildbot regression</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#problems-with-regression-checks">Problems with regression checks</a></li>
+</ul>
+</li>
 </ul>
 
             
@@ -109,7 +113,7 @@
       <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
         
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="#">GCC Buildbot</a>
+          <a href="index.html">GCC Buildbot</a>
         
       </nav>
 
@@ -137,15 +141,15 @@
 
   <ul class="wy-breadcrumbs">
     
-      <li><a href="#">Docs</a> &raquo;</li>
+      <li><a href="index.html">Docs</a> &raquo;</li>
         
-      <li>GCC Buildbot's documentation</li>
+      <li>Regression Testing</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
             
-            <a href="_sources/index.md.txt" rel="nofollow"> View page source</a>
+            <a href="_sources/regressions.md.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -158,19 +162,29 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="gcc-buildbot-s-documentation">
-<span id="gcc-buildbot-s-documentation"></span><h1>GCC Buildbot's documentation<a class="headerlink" href="#gcc-buildbot-s-documentation" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="contents">
-<span id="contents"></span><h2>Contents<a class="headerlink" href="#contents" title="Permalink to this headline">¶</a></h2>
-<div class="toctree-wrapper compound">
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="design.html">Design</a></li>
-<li class="toctree-l1"><a class="reference internal" href="master.html">Master deployment</a></li>
-<li class="toctree-l1"><a class="reference internal" href="features.html">Features</a></li>
-<li class="toctree-l1"><a class="reference internal" href="worker.html">Adding a worker</a></li>
-<li class="toctree-l1"><a class="reference internal" href="regressions.html">Regression Testing</a></li>
-</ul>
+  <div class="section" id="regression-testing">
+<span id="regression-testing"></span><h1>Regression Testing<a class="headerlink" href="#regression-testing" title="Permalink to this headline">¶</a></h1>
+<p>One of the major issues with testing GCC is determining what is and
+what is not a regression. GCC testsuite does not pass all the tests,
+all the time, therefore a simple check for 0 failures does not work.</p>
+<p>I have started a thread on this topic in the <a class="reference external" href="https://gcc.gnu.org/ml/gcc/2017-10/msg00068.html">mailing
+list</a> with lots of
+interesting input. I shall try, to the best of my abilities, summarize
+what was said and how the current version of buildbot is doing it.</p>
+<div class="section" id="buildbot-regression">
+<span id="buildbot-regression"></span><h2>Buildbot regression<a class="headerlink" href="#buildbot-regression" title="Permalink to this headline">¶</a></h2>
+<p>For the sake of the buildbot GCC test run we assume a regression is
+any change in the test results that should:</p>
+<ol class="simple">
+<li>mark the test run as failed (coloured red in the UI);</li>
+<li>trigger notifications;</li>
+</ol>
+<p>This is, at the moment, independent from any other regression
+definition used by release maintainers that might, for example,
+trigger the block of a release.</p>
 </div>
+<div class="section" id="problems-with-regression-checks">
+<span id="problems-with-regression-checks"></span><h2>Problems with regression checks<a class="headerlink" href="#problems-with-regression-checks" title="Permalink to this headline">¶</a></h2>
 </div>
 </div>
 
@@ -184,8 +198,8 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="design.html" class="btn btn-neutral float-right" title="Master Design" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
+        <a href="worker.html" class="btn btn-neutral" title="Adding a worker" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
