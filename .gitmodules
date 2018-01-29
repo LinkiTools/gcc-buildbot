@@ -1,0 +1,3 @@
+[submodule "jamais-vu"]
+	path = jamais-vu
+	url = https://github.com/davidmalcolm/jamais-vu.git
