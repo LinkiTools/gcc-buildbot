@@ -19,6 +19,9 @@
 		    "admin" : "pmatos@linki.tools" },
 		  { "name" : "cf-gcc116-aarch64", "arch" : "aarch64",
 		    "jobs" : "4",
-		    "admin" : "pmatos@linki.tools" }
+		    "admin" : "pmatos@linki.tools" },
+		  { "name" : "cf-gccxx-ppc64", "arch" : "ppc64",
+		    "jobs" : "4",
+		    "admin" : "matorola@gmail.com" }
 		]
 }
