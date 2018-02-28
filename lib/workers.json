@@ -21,7 +21,7 @@
 		    "jobs" : "4",
 		    "admin" : "pmatos@linki.tools" },
 		  { "name" : "cf-gccxx-ppc64", "arch" : "ppc64",
-		    "jobs" : "4",
+		    "jobs" : "24",
 		    "admin" : "matorola@gmail.com" }
 		]
 }
