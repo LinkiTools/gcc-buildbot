@@ -20,7 +20,10 @@
 		  { "name" : "cf-gcc116-aarch64", "arch" : "aarch64",
 		    "jobs" : "4",
 		    "admin" : "pmatos@linki.tools" },
-		  { "name" : "cf-gccxx-ppc64", "arch" : "ppc64",
+		  { "name" : "ap-gcc1-ppc64", "arch" : "ppc64",
+		    "jobs" : "24",
+		    "admin" : "matorola@gmail.com" }
+		  { "name" : "ap-gcc2-ppc64", "arch" : "ppc64",
 		    "jobs" : "24",
 		    "admin" : "matorola@gmail.com" }
 		]
