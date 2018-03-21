@@ -22,7 +22,7 @@
 		    "admin" : "pmatos@linki.tools" },
 		  { "name" : "ap-gcc1-ppc64", "arch" : "ppc64",
 		    "jobs" : "24",
-		    "admin" : "matorola@gmail.com" }
+		    "admin" : "matorola@gmail.com" },
 		  { "name" : "ap-gcc2-ppc64", "arch" : "ppc64",
 		    "jobs" : "24",
 		    "admin" : "matorola@gmail.com" }
